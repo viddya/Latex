@@ -1,0 +1,50 @@
+\documentclass{article}
+\begin{document}
+A quadtree is a tree data structure in which every node has  four children. Quadtrees are most often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. 
+Each node corresponds to a square in the plane and each child of a node corresponds to a quadrant(Northwest,Northeast,Southwest or Southeast) of the square of the node.
+
+Quadtrees can be used to store different types of data such as points, lines, areas , surfaces or rasters.
+This paper invesitigates point quadtrees.
+
+Recursive Construction of Point Quadtrees:
+
+The Quadtree built can either be a balanced or an unbalanced quadtree depending on the distribution of data points.
+This method sequentially processes each point from a set of points.
+The maximum level of the Quadtree is predetermined.
+The root node contains all the points .It is at level 0 / top of the Quadtree and it does not have a parent node.The leaf node is at the maximum level of the Quadtree and it does not have any links.
+The link nodes are the nodes which have a parent and child nodes(these nodes will have a maximum of four children).
+
+The direction /quadrant (Northwest - NW,Northeast-NE,Southwest-SW or Southeast-SE) of the point is determined and the node is built based on the direction.
+
+Move to that node which is at the level 1 and find the direction of the point within this square of the node, and repeat it until the maximum level of the Quadtree is reached
+
+Repeat the above steps till all the points in the point set is processed.
+
+Each leaf node contains a list of point buffers. The point buffer is assigned a maximum number of points that it can hold.If a buffer is full, then the points are moved to the next buffer in the list.
+The root node is subdivided recursively till the leaf node is reached. The Quadtree with k levels including the root would have 4(k?1) nodes on the kth level and (4k) ? 1 nodes in total.In this project, no of levels,  k = 4.
+
+The side lengths of squares in a Quadtree halve with increasing depth. If 'S' is the length of a side of the root node, then at depth 'd', the length of a side of the square at the level is S/2^d.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

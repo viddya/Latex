@@ -1,3 +1,22 @@
 
 Abstract : 
-Range searching problems are common in computational geometry. Finding the number of points inside a polygon and its attributes find its application in areas that deal with processing geometrical data, such as computer graphics, computer vision, geographical information systems (GIS), motion planning, and CAD. In this paper we have investigated the efficient ways to perform a range-searching problem.The first approach is the traditional brute force search method. The second method uses a Quadtree data structure to find the points inside the regular polygon on the CPU. The third method investigates finding the points inside the polygon using the Quadtree on a GPU.
+Range searching problems are common in computational geometry. Finding the number of points inside a polygon and its attributes find its application in areas that deal with processing geometrical data, such as computer graphics, computer vision, geographical information systems (GIS), motion planning, and CAD. This paper investigates the efficient ways to perform a range-searching problem.
+The first approach is the traditional brute force search method. The second method uses a Quadtree data structure to find the points inside the regular polygon on the CPU. The third method investigates finding the points inside the polygon using the Quadtree on a GPU.
+
+There has been a significant amount of work done using GPUs on regular applications that operate on dense data structures such as arrays and matrices (eg:linear algebra).However the amount of work done on irregular algorithms such as pointer based data structure is quite less.In this paper we investigate gpu traversal of pointer based Quadtree data structure built on the CPU.Based on the work by Jo and Kulkarni, tree traversal algorithms are classified as irregular algorithms.
+Because the tree structures are irregular, and the  traversals are input-dependent, GPU implementation of such algorithms have  largely relied on  application specific optimizations to achieve reasonable performance.
+
+Implementation of Quadtree traversal on CUDA GPU either uses DFS or BFS algorithms. 
+The paper "A sparse octree gravitational N-body code that runs entirely on the GPU processor",ignores DFS and implements  BFS as only the latter can be vectorized. This paper implements stack based BFS traversal to achieve parallelism.
+
+GPU CUDA ray traversal through a hierarchical data structure such as a bounding volume hierarchy (BVH) is usually carried out using depth-first search  by maintaining a stack.
+But rather than parallelizing the search for a single ray, many rays are run simultaneously.
+To accelerate this DFS search algorithm on GPUs another option would be to begin the search few layers deep in the tree, where there are as many intermediate nodes as parallel threads. Then each thread starts its own depth-first search.
+
+In this paper a hybrid approach to traversing a pointer based quadtree data structure using both BFS and DFS has been implemented.
+Starting at level three of the tree BFS is used to find the first 32 nodes of the Quadtree that satisfy the query. If the set of nodes exceed 32 at any point during traversal, then DFS is implemented.
+Therefore finding 32 nodes will happen in parallel. 
+This method  mixes the search speed of BFS and since there is a thread limit reached once the set of nodes satisfying the query exceeds 32 , DFS is implemented.
+
+
+
