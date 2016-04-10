@@ -19,10 +19,16 @@
    \vspace*{\stretch{2.0}}
 \end{titlepage}
 
+
+\section{Abstract}
+
+The range search could be performed by a brute force search method or by using a spatial data structure such as a quadtree or an octree but the latter proves to be more efficient in terms of performance on the CPU. 
+In this paper,we have demonstrated that a pointer based irregular data structure such as a quadtree can be efficiently traversed on a GPU to find the points inside a polygon.Compared with an optimized serial CPU implementation based on the  recursive Depth-First Search (DFS) , the stack based iterative Breadth-first search(BFS ) on the GPU  has a performance gain of 4x to 500x.The BFS starts from the level 3 of a quadtree to take advantage of the parallel nature of the CUDA enabled GPU.
+
 \section{Introduction}
 Range searching problems are common in computational geometry. Finding the number of points inside a polygon and its attributes find its application in areas that deal with processing geometrical data, such as computer graphics, computer vision, geographical information systems (GIS), motion planning, and CAD. 
 
-There has been a significant amount of successful work done using GPUs on regular applications that have more structured access to memory and have  large amount of data parallelism so that it be efficiently implemented on a SIMD model.However the GPU implementation of irregular algorithms such as traversal of a pointer based quadtree is challenging as the traversal of a point is input data dependent and running multiple traversals simultaneously leads to thread divergence and unpredictable memory access.In this paper we investigate GPU traversal of a pointer based quadtree data structure built on the CPU.And instead of querying individual points, we query the points inside a region which are assumed to be regular polygons.
+There has been a significant amount of successful work done using GPUs on regular applications that have more structured access to memory and have  large amount of data parallelism so that it can be efficiently implemented on a SIMD model.However the GPU implementation of irregular algorithms such as traversal of a pointer based quadtree is challenging as the traversal of a point is input data dependent and running multiple traversals simultaneously leads to thread divergence and unpredictable memory access.In this paper we investigate GPU traversal of a pointer based quadtree data structure built on the CPU.And instead of querying individual points, we query the points inside a region which are assumed to be regular polygons.
 Implementation of quadtree/octree traversal on CUDA GPU either uses DFS or BFS algorithms. 
 The paper "A sparse octree gravitational N-body code that runs entirely on the GPU processor",ignores DFS and implements  BFS as only the latter can be vectorized and it implements stack based BFS traversal to achieve parallelism.
 
@@ -71,7 +77,7 @@ As shown in Fig 2, the GPU provides a better performance for brute force search 
 The same algorithm is used for both CPU and GPU brute force search to check if a point is within the Polygon. But the  GPU is capable of launching 65535 blocks with a maximum of 1024 threads, thus massively parallelizing the search.
 The Geforce GTX680 Kepler architecture used, has a new parallel geometry pipeline optimized for tessellation and displacement mapping.And also it has a better performance /watt.
 
-This paper investigates the performance improvement of the GPU implementation of points inside a polygon search using a Quadtree .
+This paper investigates the performance improvement of the GPU implementation of points inside a polygon search using a quadtree .
 
 
 \begin{figure}[H]
@@ -324,7 +330,10 @@ Therefore in order to reduce conditional statements(if statements), the conditio
 
 
 \begin{figure}[ht]
- \subsection{BFS implementation in GPU-Different Scenarios of query Polygon}
+ \subsection{BFS implementation on GPU - different scenarios of query polygon}
+
+
+ 
  The figures below show the data points (left) and its corresponding tree representation (right). These data points will be analyzed for different polygon scenarios in the next sections.
  
   \caption{Level 1}
@@ -377,6 +386,8 @@ Therefore in order to reduce conditional statements(if statements), the conditio
 \clearpage
 \begin{figure}[ht]
 \subsubsection{Query Polygon inside a leaf node}
+
+
 The first scenario demonstrates the best case scenario where the polygon lies within one quadrant at level 4 of the quadtree and the algorithm provides best performance.
 
 
