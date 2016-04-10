@@ -31,7 +31,7 @@ Range search algorithms, which make use of spatial data structures, perform much
 As done traditionally, the quadtree is built on the CPU. To speed up the range searching problems, it is essential to increase the threshold on the number of queries processed within a given time frame.Purely sequential approach to this will demand increase in processor speeds.And growth in processor speed on a single core has reached its threshold due to the properties of silicon because of  the increase in power consumption.Therefore parallel computing is the only solution to increase the threshold on the number of inputs processed. 
 We use NVIDIAs CUDA programming model for the GPU, which allows us to execute thousands of threads simultaneously on the GPU. In CUDA, the CPU executes the sequential part of the code and the computationally intensive part, which has more scope for parallelization, is done in the GPU. 
 
-In this paper we prove that the CPU-GPU approach  shows a performance improvement by a factor of 14 compared to the pure CPU approach.
+In this paper we prove that the CPU-GPU approach shows a performance improvement by a factor of 4x to 500x compared to the pure CPU approach.
 
 
 
