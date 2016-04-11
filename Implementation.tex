@@ -333,14 +333,14 @@ Therefore in order to reduce conditional statements(if statements), the conditio
 
 
 
-\begin{figure}[ht]
+
  \subsection{BFS implementation on GPU - different scenarios of query polygon}
 
-
- 
+\vspace{1cm}
  The figures below show the data points (left) and its corresponding tree representation (right). These data points will be analyzed for different polygon scenarios in the next sections.
  
-  \caption{Level 1}
+ 
+  \begin{figure}[ht]
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{Quadtree_basic_scenario1}
@@ -349,10 +349,13 @@ Therefore in order to reduce conditional statements(if statements), the conditio
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_1_tree}
   \end{minipage}
+   \caption{Level 1}
 \end{figure}
 
+\vspace{2cm}
+
 \begin{figure}[ht]
-\caption{Level 2}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{Quadtree_basic_scenario2}
@@ -361,10 +364,11 @@ Therefore in order to reduce conditional statements(if statements), the conditio
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_2_tree}
   \end{minipage}
+  \caption{Level 2}
 \end{figure}
 
 \begin{figure}[ht]
-\caption{Level 3}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{Quadtree_basic_scenario3}
@@ -373,10 +377,11 @@ Therefore in order to reduce conditional statements(if statements), the conditio
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_3_tree}
   \end{minipage}
+  \caption{Level 3}
 \end{figure}
 
 \begin{figure}[ht]
-\caption{Level 4}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{Quadtree_basic_scenario4}  
@@ -385,17 +390,18 @@ Therefore in order to reduce conditional statements(if statements), the conditio
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_4_tree}
   \end{minipage}
+  \caption{Level 4}
 \end{figure}
 
 \clearpage
-\begin{figure}[ht]
+
 \subsubsection{Query Polygon inside a leaf node}
 
-
+\vspace{1cm}
 The first scenario demonstrates the best case scenario where the polygon lies within one quadrant at level 4 of the quadtree and the algorithm provides best performance.
 
 
-\caption{The figure shows the data points (left)and the quadtree(right) at Level 1.}
+\begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad1_1}  
@@ -404,13 +410,14 @@ The first scenario demonstrates the best case scenario where the polygon lies wi
   \begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_1_tree}
   \end{minipage}
+  \caption{The figure shows the data points (left)and the quadtree(right) at Level 1.}
 \end{figure}
 
+\vspace{2cm}
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 At level 2 , the algorithm isolates  one quadrant (first child of the root node)and ignores all other quadrants, thus bringing down the number of quadrants to be processed to 1 from 4(4 is the total number of nodes at this level).
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad1_2}  
@@ -419,14 +426,15 @@ At level 2 , the algorithm isolates  one quadrant (first child of the root node)
   \begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{1Quad_2_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
 \end{figure}
 
+\vspace{2cm}
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 At level 3, the algorithm again isolates one quadrant which is the first child of the quadrant from level 1. 
 This step reduces the number of quadrants to be processed to 1 from 3(3 is the total number of children of the quadrant output from level 1).
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad1_3}  
@@ -435,15 +443,16 @@ This step reduces the number of quadrants to be processed to 1 from 3(3 is the t
   \begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{1Quad_3_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
 \end{figure}
 
+\vspace{2cm}
 
-
-\begin{figure}[ht]
+\begin{figure}[H]
 At level 4, the algorithm isolates one quadrant which is the first child of the quadrant from level 3.
 This step reduces the number of quadrants to be processed to 1 from 2(2 is the total number of children of the quadrant output from level 3).
 Finally only one quadrant at level 4 needs to be processed in order to get the points inside the polygon in this case.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad1_4}  
@@ -452,13 +461,17 @@ Finally only one quadrant at level 4 needs to be processed in order to get the p
   \begin{minipage}[b]{0.5\textwidth}
     \includegraphics[width=\textwidth]{1Quad_4_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
 \end{figure}
 
-\begin{figure}[ht]
+\vspace{2cm}
+
 \subsubsection{Polygon overlapping 2 nodes}
+
 The second scenario demonstrates a condition where the query polygon overlaps 2 nodes at level 2 and the algorithm provides a medium performance.
 
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 1.}
+\vspace{1cm}
+\begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{2Quad_1}  
@@ -467,12 +480,13 @@ The second scenario demonstrates a condition where the query polygon overlaps 2 
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_1_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 1.}
 \end{figure}
 
-\begin{figure}[ht]
+\vspace{2cm}
 
 At level 2 , the algorithm isolates  two quadrants (second and fourth child of the root node)and ignores the other two quadrants, thus bringing down the number of quadrants to be processed to 2.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
+\begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{2Quad_2}  
@@ -481,13 +495,15 @@ At level 2 , the algorithm isolates  two quadrants (second and fourth child of t
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{2Quad_2_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
 \end{figure}
 
-\begin{figure}[ht]
+\vspace{2cm}
+
 At level 3, the algorithm  isolates 7 quadrants which are the all four children of the second child of root node and first and second child of the 4th child of root node.
 
 This step does not reduce the number of nodes to be processed at this level as all the children of the nodes output from the previous level needs to be processed.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
+\begin{figure}[H]
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{2Quad_3}  
@@ -496,13 +512,16 @@ This step does not reduce the number of nodes to be processed at this level as a
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{2Quad_3_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
 \end{figure}
 
-\begin{figure}[ht]
+\vspace{2cm}
+
+\begin{figure}[H]
 At level 4, the algorithm isolates 4 quadrants from the children of 7 quadrants from previous level.By traversing down to level 4 , we are able to further reduce the number of data points that need to be evaluated by ignoring 3rd child of the 4th child from level 3.If the quadrant that is ignored at level 4 has a larger number of data points,then using a 3-level quadtree would have resulted in a huge performance penalty.
 
 Finally only 4 quadrants at level 4 needs to be processed in order to get the points inside the polygon in this case.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{2Quad_4}  
@@ -511,14 +530,15 @@ Finally only 4 quadrants at level 4 needs to be processed in order to get the po
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{2Quad_4_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
 \end{figure}
 
 \clearpage
-\begin{figure}
+\begin{figure}[H]
 \subsubsection{Query Polygon overlapping all leaf nodes}
 The last scenario demonstrates a condition where the polygon contains maximum number of quadrants at level 4 of the quadtree and the algorithm provides a least performance compared to all other scenarios.
+\vspace{1cm}
 
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{4Quad1_1}  
@@ -527,12 +547,15 @@ The last scenario demonstrates a condition where the polygon contains maximum nu
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_1_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 1.}
 \end{figure}
 
-\begin{figure}[ht]
+\vspace{2cm}
+
+\begin{figure}[H]
 
 At level 2 , the algorithm isolates all four children of the root node.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{4Quad1_2}  
@@ -541,13 +564,16 @@ At level 2 , the algorithm isolates all four children of the root node.
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_2_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2.}
 \end{figure}
+
+\vspace{2cm}
 
 \begin{figure}[ht]
 
 
 At level 3, the algorithm  isolates all 12 quadrants at this level.The maximum possible number of nodes at this level is 16 but four of  those nodes are null nodes (it does not contain any points) and these four nodes are ignored even though these nodes lie within the polygon.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{4Quad1_3}  
@@ -556,15 +582,18 @@ At level 3, the algorithm  isolates all 12 quadrants at this level.The maximum p
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_3_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 3.}
 \end{figure}
 
-\begin{figure}
+\vspace{2cm}
+
+\begin{figure}[H]
 
 .
 At level 4, the algorithm isolates all the 11 quadrants at this level.The maximum possible number of nodes at this level is 64 but 53 of  those nodes are null nodes (it does not contain any points) and so these 53 nodes are ignored even though these nodes lie within the polygon.
 
 Finally only 11 quadrants at level 4 needs to be processed in order to get the points inside the polygon in this case.If we assume that there are larger number of data points distributed equally across the entire 2 D space and that there are no null nodes, then all the 64 nodes need to be processed.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{4Quad1_4}  
@@ -573,13 +602,15 @@ Finally only 11 quadrants at level 4 needs to be processed in order to get the p
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_4_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 4.}
 \end{figure}
 
+\vspace{2cm}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \subsubsection{Query Polygon containing no points}
+\vspace{1cm}
 
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 1}
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{NoPointQuad1}  
@@ -588,14 +619,16 @@ Finally only 11 quadrants at level 4 needs to be processed in order to get the p
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{1_1Quad_1_tree}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 1}
 \end{figure}
 
+\vspace{2cm}
 
-\begin{figure}[ht]
+\begin{figure}[H]
 At level 2, the algorithm isolates first and third child of the root node.
 
 At level 3 , the polygon does not overlap with any of the children of the nodes from level 2.The nodes that it overlaps are null nodes and therefore the traversal stops at level 3.
-\caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2}
+
   \centering
   \begin{minipage}[b]{0.35\textwidth}
     \includegraphics[width=\textwidth]{NoPointQuad2}  
@@ -604,12 +637,15 @@ At level 3 , the polygon does not overlap with any of the children of the nodes 
   \begin{minipage}[b]{0.6\textwidth}
     \includegraphics[width=\textwidth]{NoPoints3_1}
   \end{minipage}
+  \caption{The figure below shows the data points (left)and the corresponding quadtree(right) at Level 2}
 \end{figure}
 
 
 \clearpage
 \section{Results}
-The performance is compared in terms of the number polygons that can be queried per second.The number of polygons queried per second is measured for a wide range of input points. In the case of GPUs ,as the size of input increases, performance is affected due to the overhead involved in  memory transfer between CPU and GPU. But once the quadtree is transferred to the GPU, any number of polygons can be queried using iterative BFS traversal method described above. 
+The performance is compared in terms of the number polygons that can be queried per second.The number of polygons queried per second is measured for a wide range of input points. As the size of  data points increase, the performance of CPU diminishes at a faster rate than the GPU.
+
+In the case of GPUs, as the size of input increases, performance is affected as the amount of work done per thread increases and also the overhead of memory transfer of large amount of data between CPU and GPU increases. But once the quadtree is transferred to the GPU, any number of polygons can be queried using iterative BFS traversal method described above. 
 
 
 
@@ -639,7 +675,7 @@ For large sized polygons the CPU-GPU approach shows a performance improvement by
 \includegraphics[scale=0.5]{Different_Sized_Polygon_GPU4}
 
 Similar to CPU, the GPU performs better on smaller polygons compared to the larger polygons.
-In this case, the smaller polygons occupy 10 to 20 percent of the region  and the larger polygons occupy 70 to 90 percent of the region. Once the leaf nodes are reached, the number of nodes that need to be taken into account to compute points are very less  but for a large polygon which could contain a maximum of 64 nodes for a level 4 quadtree , points within all these 64 nodes need to be taken into account. 
+In this case, the smaller polygons occupy 10 to 20 percent of the region  and the larger polygons occupy 70 to 90 percent of the region. Once the leaf nodes are reached, the number of nodes that need to be taken into account to compute the points are very less.But for a large polygon which could contain a maximum of 64 nodes for a level 4 quadtree , points within all these 64 nodes need to be taken into account. 
 
 \end{figure}
 
@@ -648,9 +684,10 @@ In this case, the smaller polygons occupy 10 to 20 percent of the region  and th
 \caption{Execution time of Least to Most Complex Medium Sized Polygons}
 \includegraphics[scale=0.5]{LToMCmplxMedP}
 
-The performance is determined by the number of partial nodes a polygon contains because for partial nodes, each point inside a node needs to be checked against a polygon boundary whereas in the case of completely overlapping nodes only the range of points a node contains is stored.
+The performance is determined by the number of partial nodes a polygon contains because for partial nodes, each point inside a node needs to be checked against a polygon boundary whereas in the case of completely overlapping nodes, individual points are not checked, instead the boundary of the nodes defined by the x-y coordinates of the four corners of the rectangle are stored.
+
 The Fig 35, shows the execution time of individual medium sized polygons with a data input size of 3000.The polygons are ranked based on the number of partial nodes it contains and its execution time is measured.
-The number of polygons per second calculated is the average of the output of all these individual polygons.
+The number of polygons calculated per second is the average of the output of all these individual polygons.
 
 \end{figure}
 
@@ -658,15 +695,15 @@ The number of polygons per second calculated is the average of the output of all
 \caption{Speed Up of GPU over CPU}
 \includegraphics[scale=0.5]{SpeedUp}
 
-The performance between CPU and GPU is measured for different sizes of polygons and the maximum performance gain is achieved for the medium polygons which are more computationally intensive than small polygons.Very less number of threads are active for small polygons  and this does not take advantage of the throughput oriented nature of the GPU.The work on medium sized polygons is optimum for the GPU as the performance decreases a little  for larger polygons.
-The performance is mainly determined by the number of partial nodes a polygon contains. In the case of CPU, all the partial nodes in a polygon are processed sequentially but in the case of GPU 32 partial nodes within a polygon could processed simultaneously with a large number of polygons being queried at the same time.
+The performance between CPU and GPU is measured for different sizes of polygons and the maximum performance gain is achieved for the medium polygons which are more computationally intensive than small polygons.Very less number of threads are active for small polygons  and this does not take advantage of the throughput nature of the GPU.The work on medium sized polygons is optimum for the GPU as the performance decreases a little for larger polygons.
+The performance is mainly determined by the number of partial nodes a polygon contains. In the CPU, all the partial nodes in a polygon are processed sequentially but in the case of GPU, 32 partial nodes within a polygon is computed in parallel with 48 polygons being computed simultaneously.
 
 \end{figure}
 
-
-
-
-
+\clearpage
+\section{Conclusion}
+The range search which is a fundamental operation in GIS and spatial databases always perform better when a spatial data structure is used.Its performance is further improved when the search is implemented on a GPU.
+In this paper we have proved that an irregular pointer based quadtree  need not be linearized in order to achieve a significant performance gain on GPU.And the CPU-GPU approach provides a speed up of 4x to 500x than the pure CPU approach. 
 
 \end{document}
 
